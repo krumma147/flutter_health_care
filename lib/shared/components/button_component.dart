@@ -1,7 +1,6 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:flutter_health_care/presentation/component/BaseText.dart';
-import 'package:flutter_health_care/presentation/component/ColorComponent.dart';
+import 'package:flutter_health_care/shared/components/text_component.dart';
+import 'package:flutter_health_care/shared/components/color_component.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -25,7 +24,7 @@ class PrimaryButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: ColorComponent.primaryBlue60,
-          padding: const EdgeInsets.symmetric(vertical: 14),
+          padding: const EdgeInsets.symmetric(vertical: 12),
         ),
         child: Text(
           text,
@@ -47,6 +46,7 @@ class BaseButton extends StatelessWidget {
   final SvgPicture? icon;
   final Color? bgColor;
   final Color? outlineColor;
+  final Color? txtColor;
   final double? width;
   final double? height;
   final bool? isHideOutline;
@@ -62,31 +62,34 @@ class BaseButton extends StatelessWidget {
     this.bgColor,
     this.outlineColor,
     this.isHideOutline,
+    this.txtColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width ?? double.infinity,
+      width: width,
       height: height,
       padding: padding,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: ButtonStyle(
+        style: ElevatedButton.styleFrom(
           side: isHideOutline != true
-              ? MaterialStatePropertyAll(
-                  BorderSide(
-                    color: outlineColor ?? ColorComponent.defaultText,
-                    width: 1.5,
-                  ),
+              ? BorderSide(
+                  color: outlineColor ?? Colors.transparent,
+                  width: 1.5,
                 )
               : null,
-          backgroundColor: MaterialStatePropertyAll(bgColor ?? Colors.white),
-          foregroundColor: outlineColor != null
-              ? MaterialStatePropertyAll(
-                  outlineColor ?? ColorComponent.defaultText,
-                )
-              : null,
+          backgroundColor: bgColor ?? Colors.white,
+          padding: const EdgeInsets.symmetric(
+            vertical: 12,
+            horizontal: 4,
+          ),
+          foregroundColor:
+              outlineColor != null ? outlineColor ?? Colors.transparent : null,
+          elevation: 0,
+          surfaceTintColor: Colors.transparent,
+          shadowColor: Colors.transparent,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +99,7 @@ class BaseButton extends StatelessWidget {
             BaseText(
               text,
               fontSize: 16,
-              color: outlineColor,
+              color: txtColor,
               fontWeight: FontWeight.w600,
             ),
           ],

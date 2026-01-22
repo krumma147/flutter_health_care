@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'presentation/routes/app_router.dart';
+import 'package:flutter_health_care/features/auth/di/login_binding.dart';
+import 'package:flutter_health_care/features/auth/di/registration_binding.dart';
+import 'features/routes/app_router.dart';
 
 void main() {
   runApp(const MyApp());
+  loginViewModeBinding();
+  regisViewModelBinding();
 }
 
 class MyApp extends StatelessWidget {
@@ -11,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      debugShowCheckedModeBanner: false,  
+      debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
     );
   }
