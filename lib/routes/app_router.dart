@@ -5,7 +5,7 @@ import '../features/auth/ui/src.dart';
 import 'route_paths.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: RoutePaths.login,
+  initialLocation: RoutePaths.register,
   routes: [
     // GoRoute(
     //   path: RoutePaths.splash,
