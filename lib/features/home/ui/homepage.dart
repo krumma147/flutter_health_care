@@ -8,11 +8,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Màu sắc chủ đạo lấy từ ảnh
   final Color kDarkBlue = const Color(0xFF0D255F);
   final Color kLightGreyBg = const Color(0xFFF0F4F8);
 
-  // Trạng thái checkbox mẫu
   bool isMorningMeds = true;
   bool isAfternoonMeds = true;
   bool isBandage = true;
@@ -28,25 +26,18 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 1. Header Section
               _buildHeader(),
               const SizedBox(height: 24),
-
-              // 2. Daily Tasks Section
               _buildSectionTitle("DAILY TASKS", icon: Icons.add),
               const SizedBox(height: 12),
               _buildDailyTasksCard(),
-              
               const SizedBox(height: 24),
-
-              // 3. Daily Meals Section
               _buildSectionTitle("DAILY MEALS", icon: Icons.chevron_right),
               const SizedBox(height: 12),
               _buildMealCard("Breakfast - Omelet"),
               const SizedBox(height: 16),
-              _buildMealCard("Lunch - Salad"), // Ví dụ thêm món thứ 2
-              
-              const SizedBox(height: 80), // Khoảng trống cho Bottom Bar
+              _buildMealCard("Lunch - Salad"),
+              const SizedBox(height: 80),
             ],
           ),
         ),
@@ -54,8 +45,6 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: _buildBottomNavBar(),
     );
   }
-
-  // --- Widgets con ---
 
   Widget _buildHeader() {
     return Row(
@@ -101,18 +90,25 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Column(
         children: [
-          _buildTaskItem(Icons.medication_outlined, "Morning meds", "8:00", isMorningMeds, (v) => setState(() => isMorningMeds = v!)),
-          _buildTaskItem(Icons.medication_outlined, "Afternoon meds", "15:00", isAfternoonMeds, (v) => setState(() => isAfternoonMeds = v!)),
-          _buildTaskItem(Icons.healing_outlined, "Replace bandage", "15:00", isBandage, (v) => setState(() => isBandage = v!)),
-          _buildTaskItem(Icons.medication_outlined, "Evening meds", "20:00", isEveningMeds, (v) => setState(() => isEveningMeds = v!)),
-          // Item đặc biệt có icon phụ
-          _buildTaskItem(Icons.directions_walk, "10000 steps", null, isSteps, (v) => setState(() => isSteps = v!), showChatIcon: true),
+          _buildTaskItem(Icons.medication_outlined, "Morning meds", "8:00",
+              isMorningMeds, (v) => setState(() => isMorningMeds = v!)),
+          _buildTaskItem(Icons.medication_outlined, "Afternoon meds", "15:00",
+              isAfternoonMeds, (v) => setState(() => isAfternoonMeds = v!)),
+          _buildTaskItem(Icons.healing_outlined, "Replace bandage", "15:00",
+              isBandage, (v) => setState(() => isBandage = v!)),
+          _buildTaskItem(Icons.medication_outlined, "Evening meds", "20:00",
+              isEveningMeds, (v) => setState(() => isEveningMeds = v!)),
+          _buildTaskItem(Icons.directions_walk, "10000 steps", null, isSteps,
+              (v) => setState(() => isSteps = v!),
+              showChatIcon: true),
         ],
       ),
     );
   }
 
-  Widget _buildTaskItem(IconData icon, String title, String? time, bool value, Function(bool?) onChanged, {bool showChatIcon = false}) {
+  Widget _buildTaskItem(IconData icon, String title, String? time, bool value,
+      Function(bool?) onChanged,
+      {bool showChatIcon = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
       child: Row(
@@ -125,7 +121,8 @@ class _HomePageState extends State<HomePage> {
           ),
           if (showChatIcon) ...[
             const SizedBox(width: 8),
-            const Icon(Icons.chat_bubble_outline, size: 16, color: Colors.black54),
+            const Icon(Icons.chat_bubble_outline,
+                size: 16, color: Colors.black54),
           ],
           const Spacer(),
           if (time != null)
@@ -141,7 +138,8 @@ class _HomePageState extends State<HomePage> {
               value: value,
               onChanged: onChanged,
               activeColor: Colors.blueAccent,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4)),
             ),
           ),
         ],
@@ -158,17 +156,16 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Placeholder cho hình ảnh
           Container(
             height: 150,
             width: double.infinity,
             margin: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey[300], // Màu xám giả lập ảnh chưa load
+              color: Colors.grey[300],
               borderRadius: BorderRadius.circular(4),
             ),
             child: const Center(
-              child: Icon(Icons.close, color: Colors.white, size: 50), // Icon X giả lập placeholder
+              child: Icon(Icons.close, color: Colors.white, size: 50),
             ),
           ),
           Padding(
@@ -203,11 +200,10 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Nút Home (Được chọn)
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             decoration: BoxDecoration(
-              color: const Color(0xFFE2E8F0), // Màu nền xám đậm hơn chút
+              color: const Color(0xFFE2E8F0),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -224,16 +220,15 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          // Nút HealthBot
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(Icons.chat_bubble_outline, color: kDarkBlue),
               const SizedBox(height: 4),
-              Text("HealthBot", style: TextStyle(fontSize: 10, color: kDarkBlue)),
+              Text("HealthBot",
+                  style: TextStyle(fontSize: 10, color: kDarkBlue)),
             ],
           ),
-          // Nút Profile
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [

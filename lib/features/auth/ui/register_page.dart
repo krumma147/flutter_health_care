@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import '../../../routes/route_paths.dart';
 import '../../../shared/components/src.dart';
-import '../../routes/route_paths.dart';
 import '../di/registration_binding.dart';
 import '../bloc/registration_bloc.dart';
 import '../bloc/registration_event.dart';
@@ -73,7 +73,7 @@ class RegistrationView extends StatelessWidget {
                   onPressed: () {
                     context.read<RegistrationBloc>().add(
                         RegistrationReturnStepEvent(
-                            () => context.goNamed(RoutePaths.login)));
+                            () => context.go(RoutePaths.login)));
                   },
                 ),
               ),

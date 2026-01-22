@@ -93,4 +93,10 @@ class _RegisterLastStepState extends State<RegisterLastStep> {
       ],
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    patientIdTxtCtrl.dispose();
+  }
 }

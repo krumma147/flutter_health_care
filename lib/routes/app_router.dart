@@ -1,7 +1,11 @@
+import 'package:flutter_health_care/features/home/ui/homepage.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/auth/ui/src.dart';
+import 'route_paths.dart';
+
 final GoRouter appRouter = GoRouter(
-  // initialLocation: RoutePaths.login, // RoutePaths.splash,
+  initialLocation: RoutePaths.login,
   routes: [
     // GoRoute(
     //   path: RoutePaths.splash,
@@ -9,9 +13,15 @@ final GoRouter appRouter = GoRouter(
     // )
     // GoRoute(
     //     path: RoutePaths.login,
+    //     builder: (context, state) =>LoginPage(),
     //     ),
-    // GoRoute(
-    //   path: RoutePaths.register,
-    // ),
+    GoRoute(
+      path: RoutePaths.register,
+      builder: (context, state) => const RegisterPage(),
+    ),
+    GoRoute(
+      path: RoutePaths.home,
+      builder: (context, state) => const HomePage(),
+    ),
   ],
 );

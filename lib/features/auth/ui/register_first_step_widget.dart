@@ -132,5 +132,8 @@ class _RegisterFirstStepState extends State<RegisterFirstStep> {
     super.dispose();
     firstNameCtrl.dispose();
     lastNameCtrl.dispose();
+    emailTxtCtrl.dispose();
+    passwordTxtCtrl.dispose();
+    confirmPassTxtCtrl.dispose();
   }
 }
